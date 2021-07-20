@@ -1,1 +1,4 @@
-# Mintic_Udea_Exercise
+<div align="center"><img src="https://user-images.githubusercontent.com/66263776/126387285-bcbec412-860e-442a-a88f-513004c850ff.png" width="400" height= "100"> </div>
+<div align="center"><img src="https://user-images.githubusercontent.com/66263776/126387460-17cb9bb0-ce34-4a09-a8c6-2afdc46b5653.png" width="300" height= "300"> </div>
+
+# <div align="center"><img src="https://user-images.githubusercontent.com/66263776/126387607-3a9b2f9f-a9e1-4fc8-865a-285c5607b27c.png" width="20" height= "30"> Mintic_Udea_Exercise <img src="https://user-images.githubusercontent.com/66263776/126387607-3a9b2f9f-a9e1-4fc8-865a-285c5607b27c.png" width="20" height= "30"> 
