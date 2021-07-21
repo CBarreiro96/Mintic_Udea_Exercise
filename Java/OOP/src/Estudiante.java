@@ -6,6 +6,7 @@ public class Estudiante {
     private String carrera;
     private int[] notas = new int[5];
     private int asistencias;
+    private int contadorNotas;
 
     public Estudiante(String documento, String nombre, String appelido) {
         this.documento = documento;
@@ -15,6 +16,12 @@ public class Estudiante {
 
     public void asistirAClase(){
         this.asistencias++;
+    }
+
+    public void agregarNota(int nota){
+        this.notas[contadorNotas] = nota;
+        if (contadorNotas < 5):
+            contadorNotas++;
     }
 
     public String getDocumento() {
