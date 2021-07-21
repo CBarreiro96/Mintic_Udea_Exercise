@@ -7,8 +7,11 @@ public class Estudiante {
     private int[] notas = new int[5];
     private int asistencias;
 
-
-
+    public Estudiante(String documento, String nombre, String appelido) {
+        this.documento = documento;
+        this.nombre = nombre;
+        this.appelido = appelido;
+    }
 
     public String getDocumento() {
         return documento;
