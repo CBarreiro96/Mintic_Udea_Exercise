@@ -20,7 +20,7 @@ public class Estudiante {
 
     public void agregarNota(int nota){
         this.notas[contadorNotas] = nota;
-        if (contadorNotas < 5):
+        if (contadorNotas < 5)
             contadorNotas++;
     }
 
