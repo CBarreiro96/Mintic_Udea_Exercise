@@ -8,6 +8,9 @@ public class Principal {
 
         Estudiante diana = new Estudiante("12345","diana","Aristizabal");
         System.out.println("El nombre del estudiante es: " + diana.getNombreCompleto());
+        System.out.println("Asistencias: " + diana.getAsistencias());
+        diana.asistirAClase();
+        System.out.println("Asistencias: " + diana.getAsistencias());
         //System.out.println("Carrera: " + diana.getCarrera());
     }
 }

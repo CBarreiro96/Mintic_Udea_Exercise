@@ -13,6 +13,10 @@ public class Estudiante {
         this.appelido = appelido;
     }
 
+    public void asistirAClase(){
+        this.asistencias++;
+    }
+
     public String getDocumento() {
         return documento;
     }
