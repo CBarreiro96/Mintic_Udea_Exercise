@@ -12,5 +12,12 @@ public class Principal {
         diana.asistirAClase();
         System.out.println("Asistencias: " + diana.getAsistencias());
         //System.out.println("Carrera: " + diana.getCarrera());
+        diana.agregarNota(1);
+        diana.agregarNota(2);
+        diana.agregarNota(3);
+        diana.agregarNota(4);
+        diana.agregarNota(5);
+        diana.agregarNota(7);
+
     }
 }

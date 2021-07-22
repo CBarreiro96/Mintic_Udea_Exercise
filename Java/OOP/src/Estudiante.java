@@ -19,9 +19,13 @@ public class Estudiante {
     }
 
     public void agregarNota(int nota){
-        this.notas[contadorNotas] = nota;
-        if (contadorNotas < 5)
+        if (contadorNotas < 5) {
+            this.notas[contadorNotas] = nota;
             contadorNotas++;
+        }else{
+            //System.err.println("Ingresaste mas de cinco notas");
+            throw new RuntimeException("Ingresaste mas de cinco notas");
+        }
     }
 
     public String getDocumento() {
