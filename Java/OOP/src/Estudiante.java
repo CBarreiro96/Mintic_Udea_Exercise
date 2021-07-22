@@ -28,6 +28,14 @@ public class Estudiante {
         }
     }
 
+    public float calcularPromedio(boolean parcial){
+        float sumaNotas = 0;
+        for (int i = 0; i < this.notas.length; i++){
+            sumaNotas += this.notas[i];
+        }
+        return sumaNotas / this.notas.length;
+    }
+
     public String getDocumento() {
         return documento;
     }

@@ -17,7 +17,9 @@ public class Principal {
         diana.agregarNota(3);
         diana.agregarNota(4);
         diana.agregarNota(5);
-        diana.agregarNota(7);
+        //diana.agregarNota(7);
+        float resultado = diana.calcularPromedio(true);
+        System.out.printf("El promedio de las notas es: " + resultado);
 
     }
 }
