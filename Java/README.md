@@ -19,6 +19,7 @@ In this repository you are going to find some exercise that I did in the Antioqu
 ## Folder Class_Exercise/src
 In this folder you are going to find some exercise that  I did in Mision_Tic.
 ### Problem
+---
 #### 1. Print hello world.
 In java you need to print *Hello world*
 
@@ -26,3 +27,16 @@ In java you need to print *Hello world*
 #### 2. Sum
 You need to create to program that you read a number an in the program this number is added by the previous one. 
 However you can stop this operation if the number is zero.
+##### Example
+**In**
+```
+What is the number: 1
+What is the number: 2
+What is the number: 3
+What is the number: 0
+```
+**OUT**
+```
+The sum is : 6
+```
+---
