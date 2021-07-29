@@ -38,4 +38,9 @@ public class Clientes extends Persona {
     public void setClasificacion(String clasificacion) {
         this.clasificacion = clasificacion;
     }
+    @Override
+    public String imprimirNombre() {
+        return super.nombre + " " + super.apellidos;
+    }
+
 }
