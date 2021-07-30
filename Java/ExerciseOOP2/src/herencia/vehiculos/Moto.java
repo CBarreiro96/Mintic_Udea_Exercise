@@ -1,4 +1,4 @@
-package vehiculos;
+package herencia.vehiculos;
 
 public class Moto extends Vehiculo {
     protected String casco;

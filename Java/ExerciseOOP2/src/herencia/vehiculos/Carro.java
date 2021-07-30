@@ -1,4 +1,4 @@
-package vehiculos;
+package herencia.vehiculos;
 
 public class Carro extends Vehiculo {
     private String tipoCarro;

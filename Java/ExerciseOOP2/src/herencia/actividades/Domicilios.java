@@ -1,10 +1,10 @@
-package actividades;
+package herencia.actividades;
 
-import personas.Clientes;
-import personas.Empleado;
-import personas.Persona;
-import vehiculos.Carro;
-import vehiculos.Moto;
+import herencia.personas.Clientes;
+import herencia.personas.Empleado;
+import herencia.personas.Persona;
+import herencia.vehiculos.Carro;
+import herencia.vehiculos.Moto;
 
 import java.util.Date;
 

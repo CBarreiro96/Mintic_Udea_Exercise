@@ -1,6 +1,6 @@
-package personas;
+package herencia.personas;
 
-import vehiculos.Vehiculo;
+import herencia.vehiculos.Vehiculo;
 
 public class Persona {
     protected String id;

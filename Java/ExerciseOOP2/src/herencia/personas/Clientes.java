@@ -1,4 +1,4 @@
-package personas;
+package herencia.personas;
 
 public class Clientes extends Persona {
     private int noPedidos;

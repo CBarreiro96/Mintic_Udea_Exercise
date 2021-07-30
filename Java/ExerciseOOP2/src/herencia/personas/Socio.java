@@ -1,9 +1,7 @@
-package personas;
+package herencia.personas;
 
 
-import vehiculos.Vehiculo;
-
-import java.util.Date;
+import herencia.vehiculos.Vehiculo;
 
 public class Socio extends Empleado{
 
