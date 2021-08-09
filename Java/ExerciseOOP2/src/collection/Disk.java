@@ -2,9 +2,9 @@ package collection;
 
 public class Disk {
     private String name;
-    private int noSales;
+    private long noSales;
 
-    public Disk(String name, int noSales) {
+    public Disk(String name, long noSales) {
         this.name = name;
         this.noSales = noSales;
     }
@@ -17,7 +17,7 @@ public class Disk {
         this.name = name;
     }
 
-    public int getNoSales() {
+    public long getNoSales() {
         return noSales;
     }
 

@@ -36,9 +36,9 @@ public class Singer {
         this.disks = disks;
     }
 
-    public Integer noSaleInnYourDisks(){
+    public long noSaleInnYourDisks(){
         // Recorrer la lista de disks y sumar la cantidad de ventas.
-        int noSale = 0;
+        long noSale = 0;
         for (Disk disk : this.disks){
             noSale += disk.getNoSales();
         }
@@ -59,5 +59,5 @@ public class Singer {
         }
         return "No encontrado";
 
-    }
+    }   
 }

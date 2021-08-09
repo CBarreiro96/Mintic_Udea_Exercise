@@ -6,11 +6,11 @@ public class Music {
         /* -------------------------------------*/
         Singer Shakira = new Singer("Shakira","1234");
         Disk Miami = new Disk("WAKAWAK",1000000);
-        Disk kuku = new Disk("gogo",10101010);
+        Disk kuku = new Disk("gogo",1010100);
         Shakira.addDisk(Miami);
         Shakira.addDisk(kuku);
 
         Disk1.getSingers().add(Shakira);
-        System.out.println(Disk1.searchSinger("Hola"));
+        System.out.println(Shakira.noSaleInnYourDisks());
     }
 }
