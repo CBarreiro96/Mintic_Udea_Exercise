@@ -45,4 +45,15 @@ public class CalculadoraTest {
         int resultadoSuma = Calculadora.sumar(2,7);
         assertEquals(9, resultadoSuma);
     }
+    
+    @Test
+    public void testSumarDosNumerosConUnoNegativo() {
+        int resultadoSuma = Calculadora.sumar(-1,5);
+        assertEquals(4, resultadoSuma,"Se esperaba que la suma diera 4");
+    }
+    @Test
+    public void testSumarTresNumeros() {
+        int resultadoSuma = Calculadora.sumar(2,7,-5);
+        assertEquals(4, resultadoSuma,"Se esperaba que la suma diera 4");
+    }
 }

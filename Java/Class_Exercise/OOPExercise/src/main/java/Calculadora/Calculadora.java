@@ -11,8 +11,12 @@ package Calculadora;
  */
 public class Calculadora {
 
-    static int sumar(int i, int i0) {
-        return 9;
+    static int sumar(int numero1, int numero2) {
+        return numero1 + numero2;
+    }
+    
+    static int sumar(int numero1, int numero2, int numero3) {
+        return numero1 + numero2 + numero3;
     }
     
 }
