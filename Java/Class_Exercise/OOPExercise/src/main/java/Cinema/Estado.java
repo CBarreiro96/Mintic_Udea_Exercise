@@ -10,5 +10,5 @@ package Cinema;
  * @author userx
  */
 public enum Estado {
-    DISPONIBLE,RESERVADA,OCUPADA,DESHABILITADA
+    DISPONIBLE,RESERVADA,OCUPADA
 }

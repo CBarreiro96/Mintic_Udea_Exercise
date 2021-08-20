@@ -22,8 +22,8 @@ public class Sillas implements ICobro {
         this.estado = estado;
     }
     
-    public void cambiarEstado(String estado){
-        
+    public void cambiarEstado(Estado estado){
+        this.estado = estado;
     }
 
     public int getNumeroSillas() {

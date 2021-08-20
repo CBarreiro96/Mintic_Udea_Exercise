@@ -13,11 +13,15 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import Cinema.ventas.Cliente;
+import Cinema.ventas.Ventas;
 
 /**
  *
@@ -25,12 +29,17 @@ import javax.swing.JButton;
  */
 public class frmCinema extends javax.swing.JFrame implements ActionListener{
     
-    private static ImageIcon imgSillaPreferencialReservada = new ImageIcon("/home/userx/cinema-imagenes/sillaPreferencialReservada.png");
-    private static ImageIcon imgSillaPreferencialOcupada = new ImageIcon("/home/userx/cinema-imagenes/sillaPreferencialOcupada.png");
-    private static ImageIcon imgSillaReservada = new ImageIcon("/home/userx/cinema-imagenes/sillaReservada.png");
-    private static ImageIcon imgSillaOcupada = new ImageIcon("/home/userx/cinema-imagenes/sillaOcupada.png");
-    
+//    private static ImageIcon imgSillaPreferencialReservada = new ImageIcon("/home/userx/cinema-imagenes/sillaPreferencial   Reservada.png");
+//    private static ImageIcon imgSillaPreferencialOcupada = new ImageIcon("/home/userx/cinema-imagenes/sillaPreferencialOcupada.png");
+//    private static ImageIcon imgSillaReservada = new ImageIcon("/home/userx/cinema-imagenes/sillaReservada.png");
+//    private static ImageIcon imgSillaOcupada = new ImageIcon("/home/userx/cinema-imagenes/sillaOcupada.png");
+//    
+    private ArrayList<Ventas> ventas = new ArrayList<>();
     private HashMap<Integer, Sillas> sillas = new HashMap<>();
+    private HashMap<String, Cliente> clientes = new HashMap<>();
+    private Sillas sillaSeleccionada;
+    private JButton botonSillaSeleccionada;
+    private Cliente clienteSeleccionado;
 
     /**
      * Creates new form frmCinema
@@ -74,15 +83,17 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        Documentotext = new javax.swing.JTextField();
+        txtDocumento = new javax.swing.JTextField();
         Nombre = new javax.swing.JLabel();
-        Nombretext = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         completarVenta = new javax.swing.JButton();
         cancelarVenta = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         labelPrecio = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        labelSillaSeleccionada = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,7 +133,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnS4.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/sillaLibre.png")); // NOI18N
+        btnS4.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/silla.png")); // NOI18N
         btnS4.setActionCommand("4");
         btnS4.setBorderPainted(false);
         btnS4.setContentAreaFilled(false);
@@ -133,7 +144,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnS5.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/sillaLibre.png")); // NOI18N
+        btnS5.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/silla.png")); // NOI18N
         btnS5.setActionCommand("5");
         btnS5.setBorderPainted(false);
         btnS5.setContentAreaFilled(false);
@@ -144,7 +155,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnS6.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/sillaLibre.png")); // NOI18N
+        btnS6.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/silla.png")); // NOI18N
         btnS6.setActionCommand("6");
         btnS6.setBorderPainted(false);
         btnS6.setContentAreaFilled(false);
@@ -155,7 +166,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnS7.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/sillaPreferencialLibre.png")); // NOI18N
+        btnS7.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/sillaPreferencial.png")); // NOI18N
         btnS7.setActionCommand("7");
         btnS7.setBorderPainted(false);
         btnS7.setContentAreaFilled(false);
@@ -166,7 +177,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnS8.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/sillaPreferencialLibre.png")); // NOI18N
+        btnS8.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/sillaPreferencial.png")); // NOI18N
         btnS8.setActionCommand("8");
         btnS8.setBorderPainted(false);
         btnS8.setContentAreaFilled(false);
@@ -177,7 +188,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnS9.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/sillaPreferencialLibre.png")); // NOI18N
+        btnS9.setIcon(new javax.swing.ImageIcon("/home/userx/cinema-imagenes/sillaPreferencial.png")); // NOI18N
         btnS9.setActionCommand("9");
         btnS9.setBorderPainted(false);
         btnS9.setContentAreaFilled(false);
@@ -252,13 +263,18 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Documento");
 
-        Documentotext.setBackground(new java.awt.Color(255, 255, 255));
+        txtDocumento.setBackground(new java.awt.Color(255, 255, 255));
+        txtDocumento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDocumentoFocusLost(evt);
+            }
+        });
 
         Nombre.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         Nombre.setForeground(new java.awt.Color(0, 0, 0));
         Nombre.setText("Nombre");
 
-        Nombretext.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -273,8 +289,8 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
                         .addComponent(Nombre)))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Documentotext, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Nombretext, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -283,11 +299,11 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
                 .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(Documentotext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Nombre)
-                    .addComponent(Nombretext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -297,39 +313,67 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
 
         completarVenta.setText("Completar Venta");
         completarVenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        completarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                completarVentaActionPerformed(evt);
+            }
+        });
 
         cancelarVenta.setText("Cancelar Venta");
         cancelarVenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cancelarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarVentaActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(135, 144, 149));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Precio de la Silla:");
+        jLabel5.setText("Silla seleccionada:");
 
         labelPrecio.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
         labelPrecio.setForeground(new java.awt.Color(21, 112, 13));
         labelPrecio.setText("Aqui precio");
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Precio de la Silla:");
+
+        labelSillaSeleccionada.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
+        labelSillaSeleccionada.setForeground(new java.awt.Color(21, 112, 13));
+        labelSillaSeleccionada.setText("Aqui silla");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
-                .addComponent(labelPrecio)
-                .addGap(72, 72, 72))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelSillaSeleccionada))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addComponent(labelPrecio)))
+                .addGap(30, 30, 30))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
+                    .addComponent(labelSillaSeleccionada))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
                     .addComponent(labelPrecio))
-                .addGap(28, 28, 28))
+                .addGap(8, 8, 8))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -352,11 +396,11 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
                                 .addGap(35, 35, 35)
                                 .addComponent(cancelarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 78, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(135, 135, 135))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +409,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
                 .addComponent(jLabel2)
                 .addGap(46, 46, 46)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(72, 72, 72)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -394,7 +438,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -436,6 +480,68 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
     }//GEN-LAST:event_btnS9ActionPerformed
 
+    private void cancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarVentaActionPerformed
+        if (this.sillaSeleccionada != null) {
+            this.sillaSeleccionada.cambiarEstado(Estado.DISPONIBLE);           
+            this.resolverImagenBoton(this.botonSillaSeleccionada,sillaSeleccionada);
+            limpiarDatos();
+        }
+    }//GEN-LAST:event_cancelarVentaActionPerformed
+
+    private void limpiarDatos() {
+        this.sillaSeleccionada = null;
+        this.botonSillaSeleccionada = null;
+        this.clienteSeleccionado = null;
+        this.labelSillaSeleccionada.setText("");
+        this.labelPrecio.setText("");
+        this.txtDocumento.setText(null);
+        this.txtNombre.setText(null);
+//            this.botonSillaSeleccionada.setIcon(imgSillaOcupada);
+    }
+
+    private void completarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_completarVentaActionPerformed
+        if (this.sillaSeleccionada == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una silla!");
+            return;
+        }
+        if (txtDocumento.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el documento!");
+            return;
+        }
+        if (txtNombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el nombre!");
+            return;            
+        }     
+        
+        if (clienteSeleccionado == null){
+            Cliente cliente = new Cliente(txtNombre.getText(),txtDocumento.getText());
+            clientes.put(txtDocumento.getText(),cliente);
+            System.out.println("Esto es el cliente:"+clientes);
+            this.clienteSeleccionado = cliente;
+        }
+        
+        Ventas venta = new Ventas(new Date());
+        venta.setCliente(clienteSeleccionado);
+        venta.setSilla(sillaSeleccionada);
+        venta.setValorVenta(Double.valueOf(this.labelPrecio.getText()));
+        ventas.add(venta);
+        System.out.println("Esta es la venta"+ ventas);
+        
+      
+        this.sillaSeleccionada.cambiarEstado(Estado.OCUPADA);
+        this.resolverImagenBoton(this.botonSillaSeleccionada, sillaSeleccionada);
+        this.limpiarDatos();
+        
+    }//GEN-LAST:event_completarVentaActionPerformed
+
+    private void txtDocumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDocumentoFocusLost
+        Cliente cliente = this.buscarCliente(txtDocumento.getText());
+        if (cliente != null) {
+            this.clienteSeleccionado = cliente;
+            this.txtNombre.setText(cliente.getNombre());
+        }
+    }//GEN-LAST:event_txtDocumentoFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -472,9 +578,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Documentotext;
     private javax.swing.JLabel Nombre;
-    private javax.swing.JTextField Nombretext;
     private javax.swing.JButton btnS1;
     private javax.swing.JButton btnS2;
     private javax.swing.JButton btnS3;
@@ -491,11 +595,15 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel labelPrecio;
+    private javax.swing.JLabel labelSillaSeleccionada;
+    private javax.swing.JTextField txtDocumento;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -535,7 +643,12 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
             case DISPONIBLE:
                 reservarSilla(btnSilla,sillaSeleccionada);
                 break;
+            case RESERVADA:
+                JOptionPane.showMessageDialog(this, "Silla esta en proceso de venta");
+                break;
             case OCUPADA:
+                Ventas venta = buscarVenta(noSilla);
+                JOptionPane.showMessageDialog(this, "Silla esta en ocupada por: " + venta.getCliente().getNombre());
                 break;
             default:
         }
@@ -545,7 +658,20 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
     private void reservarSilla(JButton btnSilla, Sillas sillaSeleccionada) {
         int diaSemana = getDiaSemana();
         double precio = sillaSeleccionada.calcularPrecio(diaSemana);
+        if (precio == -1) {
+            JOptionPane.showMessageDialog(this, "Silla deshabilitada temporalmente");
+            return;
+        }
+        
+        this.sillaSeleccionada = sillaSeleccionada;
+        this.botonSillaSeleccionada = btnSilla;
+        sillaSeleccionada.cambiarEstado(Estado.RESERVADA);
+        this.resolverImagenBoton(btnSilla, sillaSeleccionada);        
+//        ImageIcon imgSillaReservada = new ImageIcon("/home/userx/cinema-imagenes/"+ sillaSeleccionada.getImagen()+"Reservada.png");
+        this.labelSillaSeleccionada.setText(String.valueOf(sillaSeleccionada.getNumeroSillas()));
         this.labelPrecio.setText(String.valueOf(precio));
+//        btnSilla.setIcon(imgSillaReservada);
+        
 //        this.labelPrecio.setText(precio + "");
         
     }
@@ -560,5 +686,36 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(fechaActual);
         return calendar.get(Calendar.DAY_OF_WEEK);
+    }
+
+    private void resolverImagenBoton(JButton boton, Sillas silla) {
+        String sufijoImagen = "";
+        switch (silla.getEstado()){
+            case DISPONIBLE:
+                sufijoImagen = ".png";
+                break;
+            case OCUPADA:
+                sufijoImagen = "Ocupada.png";
+                break;
+            case RESERVADA:
+                sufijoImagen = "Reservada.png";
+                break;
+            
+        }
+        ImageIcon imagen = new ImageIcon("/home/userx/cinema-imagenes/"+ silla.getImagen()+ sufijoImagen);
+        boton.setIcon(imagen);
+    }
+
+    private Cliente buscarCliente(String documento) {
+        return this.clientes.get(documento);
+    }
+
+    private Ventas buscarVenta(Integer noSilla) {
+        for (Ventas venta : ventas){
+            if (venta.getSilla().getNumeroSillas() == noSilla) {
+                return  venta;
+            }
+        }
+        return null;
     }
 }

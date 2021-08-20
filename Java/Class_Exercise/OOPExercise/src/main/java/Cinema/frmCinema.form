@@ -40,7 +40,7 @@
                   <Component id="jPanel1" max="32767" attributes="0"/>
                   <Component id="jPanel2" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -163,7 +163,7 @@
         <Component class="javax.swing.JButton" name="btnS4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/userx/cinema-imagenes/sillaLibre.png"/>
+              <Image iconType="2" name="/home/userx/cinema-imagenes/silla.png"/>
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="4"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -177,7 +177,7 @@
         <Component class="javax.swing.JButton" name="btnS5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/userx/cinema-imagenes/sillaLibre.png"/>
+              <Image iconType="2" name="/home/userx/cinema-imagenes/silla.png"/>
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="5"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -191,7 +191,7 @@
         <Component class="javax.swing.JButton" name="btnS6">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/userx/cinema-imagenes/sillaLibre.png"/>
+              <Image iconType="2" name="/home/userx/cinema-imagenes/silla.png"/>
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="6"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -205,7 +205,7 @@
         <Component class="javax.swing.JButton" name="btnS7">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/userx/cinema-imagenes/sillaPreferencialLibre.png"/>
+              <Image iconType="2" name="/home/userx/cinema-imagenes/sillaPreferencial.png"/>
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="7"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -219,7 +219,7 @@
         <Component class="javax.swing.JButton" name="btnS8">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/userx/cinema-imagenes/sillaPreferencialLibre.png"/>
+              <Image iconType="2" name="/home/userx/cinema-imagenes/sillaPreferencial.png"/>
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="8"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -233,7 +233,7 @@
         <Component class="javax.swing.JButton" name="btnS9">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/userx/cinema-imagenes/sillaPreferencialLibre.png"/>
+              <Image iconType="2" name="/home/userx/cinema-imagenes/sillaPreferencial.png"/>
             </Property>
             <Property name="actionCommand" type="java.lang.String" value="9"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -290,12 +290,12 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="99" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="78" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -306,7 +306,7 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
@@ -358,8 +358,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Documentotext" min="-2" pref="192" max="-2" attributes="0"/>
-                          <Component id="Nombretext" min="-2" pref="192" max="-2" attributes="0"/>
+                          <Component id="txtDocumento" min="-2" pref="192" max="-2" attributes="0"/>
+                          <Component id="txtNombre" min="-2" pref="192" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="96" max="32767" attributes="0"/>
                   </Group>
@@ -371,12 +371,12 @@
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Documentotext" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Nombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Nombretext" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="37" max="32767" attributes="0"/>
                   </Group>
@@ -395,12 +395,15 @@
                 <Property name="text" type="java.lang.String" value="Documento"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="Documentotext">
+            <Component class="javax.swing.JTextField" name="txtDocumento">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtDocumentoFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="Nombre">
               <Properties>
@@ -413,7 +416,7 @@
                 <Property name="text" type="java.lang.String" value="Nombre"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="Nombretext">
+            <Component class="javax.swing.JTextField" name="txtNombre">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -442,6 +445,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="completarVentaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="cancelarVenta">
           <Properties>
@@ -452,6 +458,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarVentaActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel4">
           <Properties>
@@ -464,23 +473,37 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="197" max="32767" attributes="0"/>
-                      <Component id="labelPrecio" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="labelSillaSeleccionada" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="59" max="32767" attributes="0"/>
+                              <Component id="labelPrecio" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelSillaSeleccionada" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labelPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -494,7 +517,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Precio de la Silla:"/>
+                <Property name="text" type="java.lang.String" value="Silla seleccionada:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="labelPrecio">
@@ -506,6 +529,28 @@
                   <Color blue="d" green="70" red="15" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Aqui precio"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Precio de la Silla:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelSillaSeleccionada">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Cantarell" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="d" green="70" red="15" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Aqui silla"/>
               </Properties>
             </Component>
           </SubComponents>
