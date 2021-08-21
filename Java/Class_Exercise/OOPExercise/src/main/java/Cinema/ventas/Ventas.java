@@ -6,6 +6,7 @@
 package Cinema.ventas;
 
 import Cinema.Sillas;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -55,6 +56,12 @@ public class Ventas {
 
     public void setSilla(Sillas silla) {
         this.silla = silla;
+    }
+
+    public Object[] getDatosComoFila() {
+        String fechaFormateada = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(this.fecha);
+        Object[] fila = {fechaFormateada,this.cliente.getNombre(),this.silla,this.valorVenta};
+        return fila;
     }
     
     

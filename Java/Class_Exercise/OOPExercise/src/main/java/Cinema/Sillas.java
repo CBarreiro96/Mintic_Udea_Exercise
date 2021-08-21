@@ -46,5 +46,9 @@ public class Sillas implements ICobro {
         }
         return 7000;
     }
-   
+
+    @Override
+    public String toString() {
+        return "silla #" + this.getNumeroSillas();
+    }
 }
