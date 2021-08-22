@@ -41,10 +41,14 @@ public class Sillas implements ICobro {
     @Override
     public double calcularPrecio(int dia) {
 //        boolean estaEnSemana = dia >= Calendar.MONDAY && dia <= Calendar.FRIDAY
-        if (dia >= Calendar.MONDAY && dia <= Calendar.FRIDAY){
+        if (esDiaEnSemana(dia)){
             return 5000;
         }
         return 7000;
+    }
+
+    public static boolean esDiaEnSemana(int dia) {
+        return dia >= Calendar.MONDAY && dia <= Calendar.FRIDAY;
     }
 
     @Override
