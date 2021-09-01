@@ -5,11 +5,13 @@
  */
 package Cinema.ventas;
 
+import java.io.Serializable;
+
 /**
  *
  * @author userx
  */
-public class Cliente {
+public class Cliente implements Serializable{
     
     private String nombre;
     private String documento;

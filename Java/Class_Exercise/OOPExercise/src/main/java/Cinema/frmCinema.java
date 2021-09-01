@@ -8,11 +8,7 @@ package Cinema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import java.time.Instant;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,6 +18,17 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import Cinema.ventas.Cliente;
 import Cinema.ventas.Ventas;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,6 +65,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
         this.btnS9.addActionListener(this); 
         
         crearDatos();
+        this.leerClientes();
     }
 
     /**
@@ -96,6 +104,8 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
         jLabel6 = new javax.swing.JLabel();
         labelSillaSeleccionada = new javax.swing.JLabel();
         btnTest = new javax.swing.JButton();
+        btnFiles = new javax.swing.JButton();
+        btnSerializable = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVentas = new javax.swing.JTable();
@@ -389,6 +399,20 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
             }
         });
 
+        btnFiles.setText("files");
+        btnFiles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilesActionPerformed(evt);
+            }
+        });
+
+        btnSerializable.setText("Serializable");
+        btnSerializable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSerializableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -402,11 +426,15 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel2)))
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(128, 128, 128)
+                            .addGap(32, 32, 32)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnTest)
+                                .addComponent(btnFiles))
+                            .addGap(35, 35, 35)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btnTest)
+                        .addGap(24, 24, 24)
+                        .addComponent(btnSerializable)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(completarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
@@ -428,13 +456,21 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
                 .addGap(72, 72, 72)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(completarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTest))
-                .addGap(37, 37, 37))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(completarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancelarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnTest)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFiles)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSerializable)
+                        .addGap(25, 25, 25))))
         );
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 204));
@@ -603,7 +639,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
 //        System.out.println("Esta es la venta"+ ventas);
         
         this.agregarVentaATabla(venta);
-        
+        this.guardarCliente();
       
         this.sillaSeleccionada.cambiarEstado(Estado.OCUPADA);
         this.resolverImagenBoton(this.botonSillaSeleccionada, sillaSeleccionada);
@@ -646,6 +682,72 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
         modeloDatos.addRow(venta2.getDatosComoFila());
     }//GEN-LAST:event_btnTestActionPerformed
 
+    private void btnFilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilesActionPerformed
+        try {
+            FileWriter escritor = new FileWriter("miArchivoDePrueba.txt");
+            escritor.write("Mi primera linea en un archivo");
+            escritor.close();
+        } catch (IOException ex) {
+            Logger.getLogger(frmCinema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Leer de archivos
+        File miArchivoDePrueba = new File("miArchivoDePrueba.txt");
+        try {
+            Scanner lector = new Scanner(miArchivoDePrueba);
+            while (lector.hasNextLine()) {
+                String linea = lector.nextLine();
+                System.out.println("Linea leida del archivo: " + linea );
+                
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(frmCinema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.out.println("Finalizo el trabajo con los archivos!");
+    }//GEN-LAST:event_btnFilesActionPerformed
+
+    private void btnSerializableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSerializableActionPerformed
+       //Escribir objetos en un archivo si la clase del objeto es serializable
+        Cliente clienteAna = new Cliente("Ana Maria Ramirez","1045454");
+        FileOutputStream archivoObjetos = null;
+        ObjectOutputStream escritorObjetos = null;
+        FileInputStream archivo = null;
+        ObjectInputStream lectorObjetos = null;
+       
+        
+        try {
+            archivoObjetos = new FileOutputStream("miArchivoDeObjetos.txt",true);
+            escritorObjetos = new ObjectOutputStream(archivoObjetos);
+            escritorObjetos.writeObject(clienteAna);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(frmCinema.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(frmCinema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        try {
+            //Leer objeto desde un archivo serializado.
+            archivo = new FileInputStream("miArchivoDeObjetos.txt");
+            System.out.println("Leo archivo");
+            lectorObjetos = new ObjectInputStream(archivo);
+            System.out.println("Sigo");
+            Cliente clienteGuardado = (Cliente) lectorObjetos.readObject();
+            System.out.println("El cliente guardado serializado es: " + clienteGuardado.getNombre());   
+        } catch (FileNotFoundException ex) {
+            System.out.println("entro1");
+            Logger.getLogger(frmCinema.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            System.out.println("entro2");
+            Logger.getLogger(frmCinema.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            System.out.println("entro3");
+            Logger.getLogger(frmCinema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSerializableActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -683,6 +785,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nombre;
+    private javax.swing.JButton btnFiles;
     private javax.swing.JButton btnS1;
     private javax.swing.JButton btnS2;
     private javax.swing.JButton btnS3;
@@ -692,6 +795,7 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton btnS7;
     private javax.swing.JButton btnS8;
     private javax.swing.JButton btnS9;
+    private javax.swing.JButton btnSerializable;
     private javax.swing.JButton btnTest;
     private javax.swing.JButton cancelarVenta;
     private javax.swing.JButton completarVenta;
@@ -831,5 +935,34 @@ public class frmCinema extends javax.swing.JFrame implements ActionListener{
     private void agregarVentaATabla(Ventas venta) {
         DefaultTableModel modeloDatos = (DefaultTableModel) this.tblVentas.getModel();
         modeloDatos.addRow(venta.getDatosComoFila());
+    }
+
+    private void guardarCliente() {
+        try {
+            FileWriter escritor = new FileWriter("misClientes.txt");
+            String clienteTexto = this.clienteSeleccionado.getDocumento() + "," + this.clienteSeleccionado.getNombre() + "\n";
+            escritor.write(clienteTexto);
+            escritor.close();
+        } catch (IOException ex) {
+            Logger.getLogger(frmCinema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void leerClientes() {
+        try {
+            File miArchivoDePrueba = new File("misClientes.txt");
+            Scanner lector = new Scanner(miArchivoDePrueba);
+            while (lector.hasNextLine()) {
+                String linea = lector.nextLine();
+                if (!linea.equals("")) {
+                    String[] infoCliente = linea.split(",");
+                    Cliente cliente = new Cliente(infoCliente[1], infoCliente[0]);
+                    
+                    this.clientes.put(cliente.getDocumento(), cliente);
+                }               
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(frmCinema.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
